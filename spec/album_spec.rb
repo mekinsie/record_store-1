@@ -62,14 +62,31 @@ describe '#Album' do
   end
 
   describe('#delete') do
-  it("deletes an album by id") do
-    album = Album.new("Giant Steps", nil)
-    album.save()
-    album2 = Album.new("Blue", nil)
-    album2.save()
-    album.delete()
-    expect(Album.all).to(eq([album2]))
+    it("deletes an album by id") do
+      album = Album.new("Giant Steps", nil)
+      album.save()
+      album2 = Album.new("Blue", nil)
+      album2.save()
+      album.delete()
+      expect(Album.all).to(eq([album2]))
+    end
   end
-end
+
+  describe('.search') do
+    it('finds an album by name') do
+      album = Album.new("Giant Steps", nil)
+      album.save()
+      album2 = Album.new("Blue", nil)
+      album2.save()
+      expect(Album.search("Giant Steps")).to(eq([album]))
+    end
+    it('finds an album by name regardless of case sensitivity') do
+      album = Album.new("Giant Steps", nil)
+      album.save()
+      album2 = Album.new("Blue", nil)
+      album2.save()
+      expect(Album.search("giant steps")).to(eq([album]))
+    end
+  end
 
 end

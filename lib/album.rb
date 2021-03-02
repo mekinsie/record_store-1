@@ -38,4 +38,11 @@ class Album
     @@albums.delete(self.id)
   end
 
+  def self.search(string)
+    our_hash = @@albums.select { |k, v| string.downcase == @@albums[k].name.downcase }
+    our_hash.values
+  end 
+
+
 end
+
