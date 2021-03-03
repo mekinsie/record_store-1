@@ -46,12 +46,18 @@ class Album
   end
 
   def self.search(string)
-    our_hash = @@albums.select { |k, v| string.downcase == @@albums[k].name.downcase }
+    our_hash = @@albums.select { |id, album| string.downcase == album.name.downcase }
     our_hash.values
+  # result_array = []
+  # @@albums.each do |id, album|
+  #   if album.name.downcase == string.downcase
+  #     result_array.push(album)
+  #   end
+  # end
+  # result_array
   end 
 
   def songs
     Song.find_by_album(self.id)
   end
 end
-

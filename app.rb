@@ -23,8 +23,14 @@ post('/albums') do
   year = params[:album_year]
   artist = params[:album_artist]
   genre = params[:album_genre]
-  album = Album.new(name, year, artist, genre, nil)
-  album.save()
+  searched_album = params[:searched_name]
+  
+  if searched_album != nil 
+    @searched_albums = Album.search(searched_album) 
+  else
+    album = Album.new(name, year, artist, genre, nil)
+    album.save()   
+  end
   @albums = Album.all()
   erb(:albums)
 end
@@ -52,7 +58,6 @@ delete('/albums/:id') do
   @albums = Album.all
   erb(:albums)
 end
-
 #Not working yet - intend to search album by name and then direct to specific album page by id 
 # post ('/albums/:id') do
 #   @album = Album.search(params[:name].to_s())
