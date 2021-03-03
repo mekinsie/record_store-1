@@ -1,10 +1,19 @@
-<h1>Update <%= @album.name() %></h1>
+<h1>Update <%= "#{@album.name()} by #{@album.artist}" %></h1>
 
 <form action="/albums/<%= @album.id() %>" method="post">
   <input name="_method" type="hidden" value="patch">
 
-  <label for="name">Rename album</label>
+  <label for="name">Update Album Name</label>
   <input id="name" name="name" type="text">
+
+  <label for="artist">Update Album Artist</label>
+  <input id="artist" name="artist" type="text">
+
+  <label for="year">Update Album Year</label>
+  <input id="year" name="year" type="text">
+
+  <label for="genre">Update Album Genre</label>
+  <input id="genre" name="genre" type="text">
 
   <button type="submit">Update</button>
 </form>

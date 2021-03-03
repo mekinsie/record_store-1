@@ -41,7 +41,7 @@ end
 
 patch('/albums/:id') do
   @album = Album.find(params[:id].to_i())
-  @album.update(params[:name])
+  @album.update(params[:name],params[:year],params[:artist],params[:genre])
   @albums = Album.all
   erb(:albums)
 end
@@ -53,7 +53,8 @@ delete('/albums/:id') do
   erb(:albums)
 end
 
-# post ('/albums') do
+#Not working yet - intend to search album by name and then direct to specific album page by id 
+# post ('/albums/:id') do
 #   @album = Album.search(params[:name].to_s())
-#   erb(:edit_album)
+#   erb(:album)
 # end

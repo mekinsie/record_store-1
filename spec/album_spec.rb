@@ -1,5 +1,6 @@
 require 'rspec'
 require 'album'
+require 'pry'
 
 describe '#Album' do
 
@@ -63,6 +64,18 @@ describe '#Album' do
       expect(album.genre).to(eq("Changed"))
     end
   end
+
+  describe('#update') do
+  it("updates an album by id") do
+    album = Album.new("Giant Steps", "old", "Old", "NotChanged", nil)
+    album.save()
+    album.update("A Love Supreme", "", "", "")
+    expect(album.name).to(eq("A Love Supreme"))
+    expect(album.year).to(eq("old"))
+    expect(album.artist).to(eq("Old"))
+    expect(album.genre).to(eq("NotChanged"))
+  end
+end
 
   describe('#delete') do
     it("deletes an album by id") do
