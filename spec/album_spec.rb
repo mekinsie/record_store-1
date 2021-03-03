@@ -1,5 +1,6 @@
 require 'rspec'
 require 'album'
+require 'song'
 require 'pry'
 
 describe '#Album' do
@@ -63,19 +64,16 @@ describe '#Album' do
       expect(album.artist).to(eq("Updated"))
       expect(album.genre).to(eq("Changed"))
     end
+    it("updates an album by id") do
+      album = Album.new("Giant Steps", "old", "Old", "NotChanged", nil)
+      album.save()
+      album.update("A Love Supreme", "", "", "")
+      expect(album.name).to(eq("A Love Supreme"))
+      expect(album.year).to(eq("old"))
+      expect(album.artist).to(eq("Old"))
+      expect(album.genre).to(eq("NotChanged"))
+    end
   end
-
-  describe('#update') do
-  it("updates an album by id") do
-    album = Album.new("Giant Steps", "old", "Old", "NotChanged", nil)
-    album.save()
-    album.update("A Love Supreme", "", "", "")
-    expect(album.name).to(eq("A Love Supreme"))
-    expect(album.year).to(eq("old"))
-    expect(album.artist).to(eq("Old"))
-    expect(album.genre).to(eq("NotChanged"))
-  end
-end
 
   describe('#delete') do
     it("deletes an album by id") do
@@ -102,6 +100,18 @@ end
       album2 = Album.new("Blue", "", "", "", nil)
       album2.save()
       expect(Album.search("giant steps")).to(eq([album]))
+    end
+  end
+
+  describe('#songs') do
+    it("returns an album's songs") do
+      album = Album.new("Giant Steps", "", "", "", nil)
+      album.save()
+      song = Song.new("Naima", album.id, nil)
+      song.save()
+      song2 = Song.new("Cousin Mary", album.id, nil)
+      song2.save()
+      expect(album.songs).to(eq([song, song2]))
     end
   end
 

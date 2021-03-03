@@ -50,5 +50,8 @@ class Album
     our_hash.values
   end 
 
+  def songs
+    Song.find_by_album(self.id)
+  end
 end
 
