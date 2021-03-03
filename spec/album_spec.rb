@@ -56,8 +56,11 @@ describe '#Album' do
     it("updates an album by id") do
       album = Album.new("Giant Steps", "", "", "", nil)
       album.save()
-      album.update("A Love Supreme")
+      album.update("A Love Supreme", "New", "Updated", "Changed")
       expect(album.name).to(eq("A Love Supreme"))
+      expect(album.year).to(eq("New"))
+      expect(album.artist).to(eq("Updated"))
+      expect(album.genre).to(eq("Changed"))
     end
   end
 

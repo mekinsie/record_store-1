@@ -34,8 +34,11 @@ class Album
     @@albums[id]
   end
 
-  def update(name)
+  def update(name, year, artist, genre)
     @name = name
+    @year = year
+    @artist = artist
+    @genre = genre
   end
 
   def delete
