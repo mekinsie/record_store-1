@@ -55,4 +55,4 @@ class Song
     Album.find(self.album_id)
   end
 
-end 
+end
